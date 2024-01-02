@@ -1,8 +1,16 @@
+# app.py
 import streamlit as st
 import pandas as pd
 
-# Load the data
-sorted_df = pd.read_excel(r"FINAL_REQUIREMENT.xlsx")
+st.title("Excel Viewer App")
 
-# Display the DataFrame
-st.dataframe(sorted_df)
+# Upload Excel file
+uploaded_file = st.file_uploader("FINAL_REQUIREMENT.xlsx", type=["xlsx", "xls"])
+
+if uploaded_file is not None:
+    # Read Excel file
+    df = pd.read_excel(uploaded_file, sheet_name="Sheet1")
+
+    # Display DataFrame
+    st.write("Excel File Contents:")
+    st.dataframe(df)
